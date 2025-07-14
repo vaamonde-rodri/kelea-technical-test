@@ -35,6 +35,16 @@ Para mejorar el rendimiento de la API, se ha implementado un sistema de caché u
 
 Esta implementación permite cachear los resultados de consultas de precios basándose en los parámetros de entrada (brandId, productId, applicationDate), reduciendo significativamente la carga en la base de datos para consultas repetidas y mejorando los tiempos de respuesta de la API.
 
+### Documentación de API con OpenAPI
+
+El proyecto incluye documentación automática de la API utilizando **SpringDoc OpenAPI 3**, que proporciona:
+
+* **Especificación OpenAPI 3.0**: Generación automática de la documentación de la API basada en el código
+* **Swagger UI**: Interfaz web interactiva para explorar y probar los endpoints de la API
+* **Acceso directo**: La documentación está disponible en `/swagger-ui.html` cuando la aplicación está ejecutándose
+
+Esta implementación permite a los desarrolladores y usuarios de la API tener acceso inmediato a una documentación actualizada y interactiva, facilitando la integración y las pruebas.
+
 ---
 
 ## Stack Tecnológico
@@ -44,6 +54,7 @@ Esta implementación permite cachear los resultados de consultas de precios bas�
 * **Build Tool**: Gradle con Kotlin DSL
 * **Base de Datos**: H2 in-memory
 * **Testing**: JUnit 5, MockMvc
+* **Documentación**: SpringDoc OpenAPI 3
 * **Otros**: Lombok
 
 ---
@@ -101,6 +112,5 @@ curl --location 'http://localhost:8080/prices/query?applicationDate=2020-06-16T2
 ## Próximos Pasos y Mejoras Propuestas
 
 * **Observabilidad**: Añadir Micrometer y Prometheus para la exportación de métricas, y un sistema de tracing distribuido como OpenTelemetry.
-* **Documentación de API**: Integrar `springdoc-openapi` para generar automáticamente una especificación OpenAPI y una UI de Swagger.
 * **Validación de Entrada**: Añadir validaciones en los parámetros del controlador para manejar entradas incorrectas (ej. IDs negativos).
 * **CI/CD**: Configurar una pipeline de integración y despliegue continuo.

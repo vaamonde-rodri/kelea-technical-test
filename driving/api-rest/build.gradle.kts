@@ -41,7 +41,12 @@ dependencies {
     // Testing - usar las versiones gestionadas por Spring Boot
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+
     }
+
+    // OpenAPI para documentación de la API REST
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+
 }
 
 tasks.test {
