@@ -1,7 +1,7 @@
 package dev.rodrigovaamonde.keleatechnicaltest.driven.database.mappers;
 
 import dev.rodrigovaamonde.keleatechnicaltest.driven.database.models.PriceMO;
-import dev.rodrigovaamonde.keleatechnicaltest.models.Price;
+import dev.rodrigovaamonde.keleatechnicaltest.application.models.Price;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,5 +1,6 @@
 package dev.rodrigovaamonde.keleatechnicaltest.driving.controllers.adapters;
 
+import dev.rodrigovaamonde.keleatechnicaltest.application.models.Price;
 import dev.rodrigovaamonde.keleatechnicaltest.application.ports.driving.FindPriceUseCase;
 import dev.rodrigovaamonde.keleatechnicaltest.driving.controllers.dto.PriceResponseDTO;
 import dev.rodrigovaamonde.keleatechnicaltest.driving.controllers.mappers.PriceResponseMapper;
@@ -25,9 +26,7 @@ public class PriceController {
             @RequestParam Long productId,
             @RequestParam Integer brandId) {
 
-        return findPriceUseCase.findApplicablePrice(brandId, productId, applicationDate)
-                .map(priceResponseMapper::toResponse)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Price price = findPriceUseCase.findApplicablePrice(brandId, productId, applicationDate);
+        return ResponseEntity.ok(priceResponseMapper.toResponse(price));
     }
 }

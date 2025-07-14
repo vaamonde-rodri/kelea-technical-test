@@ -1,4 +1,4 @@
-package dev.rodrigovaamonde.keleatechnicaltest.models;
+package dev.rodrigovaamonde.keleatechnicaltest.application.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package dev.rodrigovaamonde.keleatechnicaltest.application.ports.driven;
 
-import dev.rodrigovaamonde.keleatechnicaltest.models.Price;
+import dev.rodrigovaamonde.keleatechnicaltest.application.models.Price;
 
 import java.time.LocalDateTime;
 import java.util.List;
