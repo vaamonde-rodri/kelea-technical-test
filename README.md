@@ -64,6 +64,29 @@ El proyecto incluye un sistema completo de observabilidad implementado con **Spr
 
 Esta configuración permite integrar fácilmente la aplicación con sistemas de monitoreo como Grafana y alertas basadas en Prometheus.
 
+### Tracing Distribuido
+
+El proyecto incluye un sistema completo de **tracing distribuido** implementado con **OpenTelemetry**, **Micrometer Tracing** y **Brave**:
+
+* **OpenTelemetry**: Estándar de observabilidad para recolección de traces, métricas y logs
+* **Micrometer Tracing Bridge**: Integración nativa con Spring Boot para tracing automático
+* **Brave**: Implementación de tracing distribuido que proporciona el backend
+* **Zipkin Reporter**: Exportación de traces a sistemas compatibles con Zipkin
+
+**Características implementadas:**
+- **Trace automático**: Todos los requests HTTP son automáticamente instrumentados
+- **Propagación de contexto**: Los trace IDs y span IDs se propagan a través de las capas de la aplicación
+- **Logging enriquecido**: Los logs incluyen automáticamente `traceId` y `spanId` para correlación
+- **Servicio identificado**: La aplicación se identifica como "kelea-technical-test" en los traces
+- **Exportación de traces**: Configurado para exportar a logging (ampliable a Zipkin/Jaeger)
+
+**Formato de logging con tracing:**
+```
+2024-07-15 10:30:45.123  INFO [kelea-technical-test,64fc729b9ac7b3a1,8b9c1a2d3e4f5678] ...
+```
+
+Esta implementación permite rastrear completamente el flujo de una petición desde la entrada por el controlador REST hasta la consulta en base de datos, facilitando el debugging y el análisis de rendimiento en entornos distribuidos.
+
 ---
 
 ## Stack Tecnológico
@@ -75,6 +98,7 @@ Esta configuración permite integrar fácilmente la aplicación con sistemas de 
 * **Testing**: JUnit 5, MockMvc
 * **Documentación**: SpringDoc OpenAPI 3
 * **Observabilidad**: Spring Boot Actuator + Micrometer + Prometheus
+* **Tracing Distribuido**: OpenTelemetry + Micrometer Tracing + Brave + Zipkin
 * **Otros**: Lombok
 
 ---
@@ -141,8 +165,9 @@ Una vez que la aplicación esté ejecutándose, puedes acceder a los siguientes 
 ## Próximos Pasos y Mejoras Propuestas
 
 * ✅ **Observabilidad**: ~~Añadir Micrometer y Prometheus para la exportación de métricas~~ - **IMPLEMENTADO**
-* **Tracing Distribuido**: Añadir OpenTelemetry para trazabilidad completa de requests
+* ✅ **Tracing Distribuido**: ~~Añadir OpenTelemetry para trazabilidad completa de requests~~ - **IMPLEMENTADO**
 * **Validación de Entrada**: Añadir validaciones en los parámetros del controlador para manejar entradas incorrectas (ej. IDs negativos)
 * **Dashboards**: Crear dashboards de Grafana para visualización de métricas
 * **Alertas**: Configurar alertas basadas en métricas de Prometheus
+* **Exportación de Traces**: Configurar exportación a Zipkin o Jaeger para visualización de traces
 * **CI/CD**: Configurar una pipeline de integración y despliegue continuo
