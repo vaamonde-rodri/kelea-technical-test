@@ -48,6 +48,14 @@ dependencies {
 
     // Cache
     implementation("org.springframework.boot:spring-boot-starter-cache")
+
+    // Monitoreo y métricas
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
+    implementation("io.opentelemetry:opentelemetry-exporter-logging")
+    implementation("io.micrometer:micrometer-tracing-bridge-brave")
+    implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+
 }
 
 tasks.withType<Test> {
