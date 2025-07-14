@@ -60,6 +60,7 @@ tasks.register<JacocoReport>("jacocoAggregatedReport") {
     group = "verification"
 
     dependsOn(subprojects.map { it.tasks.named("test") })
+    dependsOn(subprojects.map { it.tasks.named("jacocoTestReport") })
 
     additionalSourceDirs.setFrom(subprojects.map { it.sourceSets.main.get().allSource.srcDirs })
     sourceDirectories.setFrom(subprojects.map { it.sourceSets.main.get().allSource.srcDirs })
