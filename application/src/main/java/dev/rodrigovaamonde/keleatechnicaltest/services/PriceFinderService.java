@@ -4,6 +4,7 @@ import dev.rodrigovaamonde.keleatechnicaltest.application.ports.driven.PriceRepo
 import dev.rodrigovaamonde.keleatechnicaltest.application.ports.driving.FindPriceUseCase;
 import dev.rodrigovaamonde.keleatechnicaltest.models.Price;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ public class PriceFinderService implements FindPriceUseCase {
     private final PriceRepository priceRepository;
 
     @Override
+    @Cacheable("prices")
     public Optional<Price> findApplicablePrice(
             Integer brandId,
             Long productId,

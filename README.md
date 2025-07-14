@@ -25,6 +25,16 @@ Este enfoque garantiza una alta cohesión, bajo acoplamiento y una excelente cap
 
 El desarrollo se ha guiado por la metodología **Test-Driven Development (TDD)**, comenzando por un test de integración que validaba el comportamiento esperado de la API. Este test ha "conducido" la creación de cada capa de la aplicación, desde el controlador hasta la base de datos, asegurando que cada pieza de código se creaba con un propósito claro y probado.
 
+### Sistema de Caché
+
+Para mejorar el rendimiento de la API, se ha implementado un sistema de caché utilizando **Spring Cache**. La configuración incluye:
+
+* **`@EnableCaching`**: Habilitado a nivel de aplicación para activar el soporte de caché
+* **`@Cacheable("prices")`**: Aplicado al método `findApplicablePrice` en el servicio `PriceFinderService`
+* **Caché en memoria**: Utiliza el proveedor de caché por defecto de Spring (ConcurrentMapCacheManager)
+
+Esta implementación permite cachear los resultados de consultas de precios basándose en los parámetros de entrada (brandId, productId, applicationDate), reduciendo significativamente la carga en la base de datos para consultas repetidas y mejorando los tiempos de respuesta de la API.
+
 ---
 
 ## Stack Tecnológico
@@ -91,7 +101,6 @@ curl --location 'http://localhost:8080/prices/query?applicationDate=2020-06-16T2
 ## Próximos Pasos y Mejoras Propuestas
 
 * **Observabilidad**: Añadir Micrometer y Prometheus para la exportación de métricas, y un sistema de tracing distribuido como OpenTelemetry.
-* **Caching**: Implementar un mecanismo de caché (ej. con Caffeine y Spring Cache) en el `PriceFinderService` para optimizar las peticiones recurrentes.
 * **Documentación de API**: Integrar `springdoc-openapi` para generar automáticamente una especificación OpenAPI y una UI de Swagger.
 * **Validación de Entrada**: Añadir validaciones en los parámetros del controlador para manejar entradas incorrectas (ej. IDs negativos).
 * **CI/CD**: Configurar una pipeline de integración y despliegue continuo.
