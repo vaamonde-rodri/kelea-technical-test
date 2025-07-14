@@ -1,7 +1,7 @@
 package dev.rodrigovaamonde.keleatechnicaltest.driving.controllers.mappers;
 
 import dev.rodrigovaamonde.keleatechnicaltest.driving.controllers.dto.PriceResponseDTO;
-import dev.rodrigovaamonde.keleatechnicaltest.models.Price;
+import dev.rodrigovaamonde.keleatechnicaltest.application.models.Price;
 import org.springframework.stereotype.Component;
 
 @Component

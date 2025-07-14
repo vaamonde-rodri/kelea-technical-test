@@ -3,7 +3,7 @@ package dev.rodrigovaamonde.keleatechnicaltest.driven.database.adapters;
 import dev.rodrigovaamonde.keleatechnicaltest.application.ports.driven.PriceRepository;
 import dev.rodrigovaamonde.keleatechnicaltest.driven.database.mappers.PriceDatabaseMapper;
 import dev.rodrigovaamonde.keleatechnicaltest.driven.database.repository.PriceDatabaseRepository;
-import dev.rodrigovaamonde.keleatechnicaltest.models.Price;
+import dev.rodrigovaamonde.keleatechnicaltest.application.models.Price;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

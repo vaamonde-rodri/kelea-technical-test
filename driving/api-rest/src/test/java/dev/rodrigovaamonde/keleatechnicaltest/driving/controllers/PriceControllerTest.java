@@ -6,6 +6,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.is;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -82,5 +84,20 @@ public class PriceControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.priceList").value(4))
                 .andExpect(jsonPath("$.price").value(38.95));
+    }
+
+    @Test
+    void whenPriceIsNotFound_thenReturns404AndErrorResponse() throws Exception {
+        mockMvc.perform(get("/prices/query")
+                        .param("applicationDate", "2025-12-31T23:59:59")
+                        .param("productId", "35459")
+                        .param("brandId", "1"))
+
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status", is(404)))
+                .andExpect(jsonPath("$.error", is("Price Not Found")))
+                .andExpect(jsonPath("$.message", is("No applicable price found for the given criteria.")))
+                .andExpect(jsonPath("$.path", is("/prices/query")))
+                .andExpect(jsonPath("$.timestamp").exists());
     }
 }
