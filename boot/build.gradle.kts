@@ -48,6 +48,10 @@ dependencies {
 
     // Cache
     implementation("org.springframework.boot:spring-boot-starter-cache")
+
+    // Actuator y Prometheus para monitoreo
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("io.micrometer:micrometer-registry-prometheus")
 }
 
 tasks.withType<Test> {

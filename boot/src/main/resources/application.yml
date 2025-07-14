@@ -30,7 +30,20 @@ spring:
       hibernate:
         format_sql: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        # Exponemos los endpoints de health, info y prometheus
+        include: "health,info,prometheus"
+  endpoint:
+    health:
+      # Mostramos siempre los detalles completos del estado de salud
+      show-details: always
+
 logging:
   level:
     dev.rodrigovaamonde: DEBUG
     org.springframework.web: DEBUG
+
+
