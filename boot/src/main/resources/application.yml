@@ -31,6 +31,16 @@ spring:
         format_sql: true
 
 management:
+  zipkin:
+    tracing:
+      export:
+        enabled: false
+  tracing:
+    sampling:
+      probability: 1.0
+  opentelemetry:
+    resource-attributes:
+      service.name: kelea-technical-test
   endpoints:
     web:
       exposure:
@@ -42,6 +52,8 @@ management:
       show-details: always
 
 logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
     dev.rodrigovaamonde: DEBUG
     org.springframework.web: DEBUG
