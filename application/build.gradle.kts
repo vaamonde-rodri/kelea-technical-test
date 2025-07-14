@@ -24,6 +24,7 @@ repositories {
 
 dependencies {
     // Dependencias para el dominio (sin frameworks externos)
+    implementation("org.springframework:spring-context")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 

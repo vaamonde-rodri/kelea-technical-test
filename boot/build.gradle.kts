@@ -32,6 +32,8 @@ dependencies {
     // Spring Boot Starter para configuración
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("com.h2database:h2")
 
     // Development tools
     developmentOnly("org.springframework.boot:spring-boot-devtools")

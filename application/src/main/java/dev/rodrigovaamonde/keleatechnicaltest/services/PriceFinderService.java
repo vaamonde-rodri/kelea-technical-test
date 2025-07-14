@@ -1,8 +1,10 @@
 package dev.rodrigovaamonde.keleatechnicaltest.services;
 
+import dev.rodrigovaamonde.keleatechnicaltest.application.ports.driven.PriceRepository;
 import dev.rodrigovaamonde.keleatechnicaltest.application.ports.driving.FindPriceUseCase;
 import dev.rodrigovaamonde.keleatechnicaltest.models.Price;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
