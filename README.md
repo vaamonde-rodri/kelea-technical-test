@@ -87,6 +87,55 @@ El proyecto incluye un sistema completo de **tracing distribuido** implementado 
 
 Esta implementación permite rastrear completamente el flujo de una petición desde la entrada por el controlador REST hasta la consulta en base de datos, facilitando el debugging y el análisis de rendimiento en entornos distribuidos.
 
+### Validación de Entrada
+
+El proyecto implementa un sistema robusto de **validación de entrada** utilizando **Bean Validation (JSR-303)** y **Spring Validation** para garantizar la integridad de los datos recibidos en la API:
+
+**Características implementadas:**
+
+* **Validaciones declarativas**: Uso de anotaciones Bean Validation en los parámetros del controlador
+* **Manejo centralizado de errores**: GlobalExceptionHandler para respuestas consistentes de error
+* **Mensajes descriptivos**: Mensajes de error claros y específicos en inglés
+* **Códigos HTTP apropiados**: Respuestas 400 Bad Request para errores de validación
+
+**Validaciones aplicadas:**
+
+* **`@NotNull`**: Todos los parámetros son obligatorios (applicationDate, productId, brandId)
+* **`@Positive`**: Los IDs deben ser números positivos (productId > 0, brandId > 0)
+* **`@DateTimeFormat`**: Formato ISO de fecha/hora para applicationDate
+
+**Tipos de errores manejados:**
+
+1. **Validation Error (400)**: Violaciones de las reglas de validación
+   - IDs negativos o cero
+   - Valores nulos en parámetros obligatorios
+
+2. **Missing Required Parameter (400)**: Parámetros faltantes en la request
+   - Ausencia de parámetros obligatorios
+
+3. **Invalid Parameter Type (400)**: Tipos de datos incorrectos
+   - Texto en lugar de números para IDs
+   - Formato de fecha inválido
+
+**Ejemplo de respuesta de error:**
+```json
+{
+  "timestamp": "2024-07-15T10:30:45.123",
+  "status": 400,
+  "error": "Validation Error",
+  "message": "Product ID must be a positive number",
+  "path": "/prices/query"
+}
+```
+
+**Tests de validación:**
+- ✅ Tests comprehensivos para todos los casos de error
+- ✅ Verificación de códigos de estado HTTP correctos
+- ✅ Validación de estructura de respuestas de error
+- ✅ Cobertura de casos límite (IDs negativos, cero, tipos incorrectos)
+
+Esta implementación asegura que la API rechace elegantemente las entradas inválidas antes de procesar la lógica de negocio, mejorando la robustez y la experiencia del usuario.
+
 ---
 
 ## Stack Tecnológico
