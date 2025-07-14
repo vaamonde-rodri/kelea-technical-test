@@ -45,6 +45,9 @@ dependencies {
     // Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // Cache
+    implementation("org.springframework.boot:spring-boot-starter-cache")
 }
 
 tasks.withType<Test> {

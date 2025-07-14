@@ -1,6 +1,7 @@
 package dev.rodrigovaamonde.keleatechnicaltest.driving.controllers;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @ComponentScan(basePackages = "dev.rodrigovaamonde")
 @EnableJpaRepositories(basePackages = "dev.rodrigovaamonde.keleatechnicaltest.driven.database.repository")
 @EntityScan(basePackages = "dev.rodrigovaamonde.keleatechnicaltest.driven.database.models")
+@EnableCaching
 public class KeleaTechnicalTestApplication {
 
     public static void main(String[] args) {
