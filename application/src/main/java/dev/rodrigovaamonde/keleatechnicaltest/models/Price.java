@@ -1,14 +1,15 @@
-package dev.rodrigovaamonde.keleatechnicaltest.dto;
+package dev.rodrigovaamonde.keleatechnicaltest.models;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public record PriceResponseDTO(
-        Long productId,
+public record Price(
         Integer brandId,
-        Integer priceList,
         LocalDateTime startDate,
         LocalDateTime endDate,
+        Integer priceList,
+        Long productId,
+        Integer priority,
         BigDecimal price
 ) {
 }

@@ -1,4 +1,4 @@
-package dev.rodrigovaamonde.keleatechnicaltest;
+package dev.rodrigovaamonde.keleatechnicaltest.driving.controllers;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
