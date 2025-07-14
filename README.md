@@ -45,6 +45,25 @@ El proyecto incluye documentación automática de la API utilizando **SpringDoc 
 
 Esta implementación permite a los desarrolladores y usuarios de la API tener acceso inmediato a una documentación actualizada y interactiva, facilitando la integración y las pruebas.
 
+### Observabilidad y Monitoreo
+
+El proyecto incluye un sistema completo de observabilidad implementado con **Spring Boot Actuator**, **Micrometer** y **Prometheus**:
+
+* **Spring Boot Actuator**: Proporciona endpoints de monitoreo y gestión listos para producción
+* **Micrometer + Prometheus**: Permite la recolección y exportación de métricas en formato Prometheus
+* **Endpoints expuestos**: 
+  - `/actuator/health`: Estado de salud de la aplicación con detalles completos
+  - `/actuator/info`: Información general de la aplicación
+  - `/actuator/prometheus`: Métricas en formato Prometheus para scraping
+
+**Métricas disponibles:**
+- Métricas de rendimiento de la aplicación (JVM, memoria, threads)
+- Métricas de HTTP (requests, response times, status codes)
+- Métricas personalizadas de caché y base de datos
+- Métricas de Spring Boot (datasource, web requests, etc.)
+
+Esta configuración permite integrar fácilmente la aplicación con sistemas de monitoreo como Grafana y alertas basadas en Prometheus.
+
 ---
 
 ## Stack Tecnológico
@@ -55,6 +74,7 @@ Esta implementación permite a los desarrolladores y usuarios de la API tener ac
 * **Base de Datos**: H2 in-memory
 * **Testing**: JUnit 5, MockMvc
 * **Documentación**: SpringDoc OpenAPI 3
+* **Observabilidad**: Spring Boot Actuator + Micrometer + Prometheus
 * **Otros**: Lombok
 
 ---
@@ -108,9 +128,21 @@ curl --location 'http://localhost:8080/prices/query?applicationDate=2020-06-15T1
 curl --location 'http://localhost:8080/prices/query?applicationDate=2020-06-16T21:00:00&productId=35455&brandId=1'
 ```
 
+## Endpoints de Monitoreo
+
+Una vez que la aplicación esté ejecutándose, puedes acceder a los siguientes endpoints de monitoreo:
+
+* **Documentación de la API**: `http://localhost:8080/swagger-ui.html`
+* **Estado de salud**: `http://localhost:8080/actuator/health`
+* **Información de la aplicación**: `http://localhost:8080/actuator/info`
+* **Métricas de Prometheus**: `http://localhost:8080/actuator/prometheus`
+
 ---
 ## Próximos Pasos y Mejoras Propuestas
 
-* **Observabilidad**: Añadir Micrometer y Prometheus para la exportación de métricas, y un sistema de tracing distribuido como OpenTelemetry.
-* **Validación de Entrada**: Añadir validaciones en los parámetros del controlador para manejar entradas incorrectas (ej. IDs negativos).
-* **CI/CD**: Configurar una pipeline de integración y despliegue continuo.
+* ✅ **Observabilidad**: ~~Añadir Micrometer y Prometheus para la exportación de métricas~~ - **IMPLEMENTADO**
+* **Tracing Distribuido**: Añadir OpenTelemetry para trazabilidad completa de requests
+* **Validación de Entrada**: Añadir validaciones en los parámetros del controlador para manejar entradas incorrectas (ej. IDs negativos)
+* **Dashboards**: Crear dashboards de Grafana para visualización de métricas
+* **Alertas**: Configurar alertas basadas en métricas de Prometheus
+* **CI/CD**: Configurar una pipeline de integración y despliegue continuo
