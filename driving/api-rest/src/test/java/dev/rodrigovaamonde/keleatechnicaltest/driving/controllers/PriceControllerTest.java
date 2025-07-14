@@ -100,4 +100,95 @@ public class PriceControllerTest {
                 .andExpect(jsonPath("$.path", is("/prices/query")))
                 .andExpect(jsonPath("$.timestamp").exists());
     }
+
+    @Test
+    void whenProductIdIsNegative_thenReturns400AndValidationError() throws Exception {
+        mockMvc.perform(get("/prices/query")
+                        .param("applicationDate", "2020-06-14T10:00:00")
+                        .param("productId", "-1")
+                        .param("brandId", "1"))
+
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status", is(400)))
+                .andExpect(jsonPath("$.error", is("Validation Error")))
+                .andExpect(jsonPath("$.message", is("Product ID must be a positive number")))
+                .andExpect(jsonPath("$.path", is("/prices/query")))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
+
+    @Test
+    void whenBrandIdIsNegative_thenReturns400AndValidationError() throws Exception {
+        mockMvc.perform(get("/prices/query")
+                        .param("applicationDate", "2020-06-14T10:00:00")
+                        .param("productId", "35455")
+                        .param("brandId", "-1"))
+
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status", is(400)))
+                .andExpect(jsonPath("$.error", is("Validation Error")))
+                .andExpect(jsonPath("$.message", is("Brand ID must be a positive number")))
+                .andExpect(jsonPath("$.path", is("/prices/query")))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
+
+    @Test
+    void whenProductIdIsZero_thenReturns400AndValidationError() throws Exception {
+        mockMvc.perform(get("/prices/query")
+                        .param("applicationDate", "2020-06-14T10:00:00")
+                        .param("productId", "0")
+                        .param("brandId", "1"))
+
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status", is(400)))
+                .andExpect(jsonPath("$.error", is("Validation Error")))
+                .andExpect(jsonPath("$.message", is("Product ID must be a positive number")))
+                .andExpect(jsonPath("$.path", is("/prices/query")))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
+
+    @Test
+    void whenRequiredParameterIsMissing_thenReturns400AndMissingParameterError() throws Exception {
+        mockMvc.perform(get("/prices/query")
+                        .param("applicationDate", "2020-06-14T10:00:00")
+                        .param("productId", "35455")
+                        // brandId missing
+                )
+
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status", is(400)))
+                .andExpect(jsonPath("$.error", is("Missing Required Parameter")))
+                .andExpect(jsonPath("$.message", is("Required parameter 'brandId' is not present")))
+                .andExpect(jsonPath("$.path", is("/prices/query")))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
+
+    @Test
+    void whenParameterTypeIsInvalid_thenReturns400AndTypeMismatchError() throws Exception {
+        mockMvc.perform(get("/prices/query")
+                        .param("applicationDate", "2020-06-14T10:00:00")
+                        .param("productId", "invalid-number")
+                        .param("brandId", "1"))
+
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status", is(400)))
+                .andExpect(jsonPath("$.error", is("Invalid Parameter Type")))
+                .andExpect(jsonPath("$.message", is("Parameter 'productId' must be of type Long")))
+                .andExpect(jsonPath("$.path", is("/prices/query")))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
+
+    @Test
+    void whenDateFormatIsInvalid_thenReturns400AndTypeMismatchError() throws Exception {
+        mockMvc.perform(get("/prices/query")
+                        .param("applicationDate", "invalid-date")
+                        .param("productId", "35455")
+                        .param("brandId", "1"))
+
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status", is(400)))
+                .andExpect(jsonPath("$.error", is("Invalid Parameter Type")))
+                .andExpect(jsonPath("$.message", is("Parameter 'applicationDate' must be of type LocalDateTime")))
+                .andExpect(jsonPath("$.path", is("/prices/query")))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
 }
