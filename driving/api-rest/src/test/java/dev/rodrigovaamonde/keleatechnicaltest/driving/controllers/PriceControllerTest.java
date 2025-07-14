@@ -31,4 +31,56 @@ public class PriceControllerTest {
                 .andExpect(jsonPath("$.priceList").value(1))
                 .andExpect(jsonPath("$.price").value(35.50));
     }
+
+    @Test
+    void test2_shouldReturnCorrectPriceFor1600OnDay14() throws Exception {
+        mockMvc.perform(
+                        get("/prices/query")
+                                .param("applicationDate", "2020-06-14T16:00:00")
+                                .param("productId", "35455")
+                                .param("brandId", "1")
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.priceList").value(2))
+                .andExpect(jsonPath("$.price").value(25.45));
+    }
+
+    @Test
+    void test3_shouldReturnCorrectPriceFor2100OnDay14() throws Exception {
+        mockMvc.perform(
+                        get("/prices/query")
+                                .param("applicationDate", "2020-06-14T21:00:00")
+                                .param("productId", "35455")
+                                .param("brandId", "1")
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.priceList").value(1))
+                .andExpect(jsonPath("$.price").value(35.50));
+    }
+
+    @Test
+    void test4_shouldReturnCorrectPriceFor1000OnDay15() throws Exception {
+        mockMvc.perform(
+                        get("/prices/query")
+                                .param("applicationDate", "2020-06-15T10:00:00")
+                                .param("productId", "35455")
+                                .param("brandId", "1")
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.priceList").value(3))
+                .andExpect(jsonPath("$.price").value(30.50));
+    }
+
+    @Test
+    void test5_shouldReturnCorrectPriceFor2100OnDay16() throws Exception {
+        mockMvc.perform(
+                        get("/prices/query")
+                                .param("applicationDate", "2020-06-16T21:00:00")
+                                .param("productId", "35455")
+                                .param("brandId", "1")
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.priceList").value(4))
+                .andExpect(jsonPath("$.price").value(38.95));
+    }
 }
