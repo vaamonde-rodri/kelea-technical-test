@@ -56,6 +56,11 @@ dependencies {
     implementation("io.micrometer:micrometer-tracing-bridge-brave")
     implementation("io.zipkin.reporter2:zipkin-reporter-brave")
 
+    // Librería principal de Resilience4j para Spring Boot
+    implementation("io.github.resilience4j:resilience4j-spring-boot3:2.2.0")
+
+    // AOP es necesario para que las anotaciones de Resilience4j funcionen
+    implementation("org.springframework.boot:spring-boot-starter-aop")
 }
 
 tasks.withType<Test> {
