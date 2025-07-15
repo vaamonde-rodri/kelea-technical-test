@@ -225,11 +225,10 @@ Una vez que la aplicación esté ejecutándose, puedes acceder a los siguientes 
 
 ---
 ## Próximos Pasos y Mejoras Propuestas
-
-* ✅ **Observabilidad**: ~~Añadir Micrometer y Prometheus para la exportación de métricas~~ - **IMPLEMENTADO**
-* ✅ **Tracing Distribuido**: ~~Añadir OpenTelemetry para trazabilidad completa de requests~~ - **IMPLEMENTADO**
-* **Validación de Entrada**: Añadir validaciones en los parámetros del controlador para manejar entradas incorrectas (ej. IDs negativos)
+* **Exportación de Traces**: Configurar exportación a Zipkin o Jaeger para visualización de traces
 * **Dashboards**: Crear dashboards de Grafana para visualización de métricas
 * **Alertas**: Configurar alertas basadas en métricas de Prometheus
-* **Exportación de Traces**: Configurar exportación a Zipkin o Jaeger para visualización de traces
 * **CI/CD**: Configurar una pipeline de integración y despliegue continuo
+* **Base de datos persistente**: Migrar de H2 in-memory a una base de datos persistente (PostgreSQL/MySQL)
+* **Autenticación y autorización**: Implementar seguridad en los endpoints
+* **Rate Limiting**: Añadir límites de velocidad para proteger la API
