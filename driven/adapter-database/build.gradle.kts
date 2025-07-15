@@ -42,6 +42,9 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.mockito:mockito-core")
     testImplementation("org.assertj:assertj-core")
+
+    // Resilience4j para tolerancia a fallos
+    implementation("io.github.resilience4j:resilience4j-spring-boot3:2.0.2")
 }
 
 tasks.test {

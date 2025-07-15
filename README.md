@@ -136,6 +136,19 @@ El proyecto implementa un sistema robusto de **validación de entrada** utilizan
 
 Esta implementación asegura que la API rechace elegantemente las entradas inválidas antes de procesar la lógica de negocio, mejorando la robustez y la experiencia del usuario.
 
+### Resilience y Circuit Breaker
+
+El proyecto incorpora mecanismos de resiliencia usando Resilience4j y patrones de Circuit Breaker para garantizar estabilidad y tolerancia a fallos en entornos distribuidos:
+
+* **Circuit Breaker**: Protege llamadas a servicios externos, abre el circuito tras un umbral de errores y aplica un período de espera antes de reintentar.
+* **Retry**: Reintentos configurables en caso de errores transitorios.
+* **Bulkhead**: Aislamiento de recursos para limitar la concurrencia y evitar la saturación del sistema.
+* **TimeLimiter**: Define tiempos máximos de espera para llamadas externas, evitando bloqueos prolongados.
+* **Fallback Methods**: Métodos de reserva que proporcionan respuestas por defecto cuando la llamada primaria falla.
+
+**Configuración**:  
+Se puede ajustar en `application.yml` bajo la sección `resilience4j`, definiendo propiedades para circuitbreaker, retry, bulkhead y timelimiter.
+
 ---
 
 ## Stack Tecnológico
