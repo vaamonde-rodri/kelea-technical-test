@@ -1,9 +1,5 @@
 # Prueba Técnica - API de Consulta de Precios
 
-## Descripción del Problema
-
-(Aquí puedes pegar la descripción del problema que te dieron en el enunciado).
-
 ---
 
 ## Decisiones de Diseño y Arquitectura
